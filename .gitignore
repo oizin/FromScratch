@@ -1,0 +1,24 @@
+# Quarto output
+_site/
+_freeze/
+
+# Jupyter
+*.ipynb_checkpoints/
+
+# R
+.Rproj.user/
+.Rhistory
+.RData
+
+# Python
+__pycache__/
+*.py[cod]
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+
+# VSCode
+.vscode/

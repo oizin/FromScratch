@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: dcc07c7d-bee2-43bf-b872-72abc86aa86a
+      url: https://oisinf.quarto.pub/notes
