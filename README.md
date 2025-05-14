@@ -1,10 +1,10 @@
 ## About
 
-Research notes, hosted at https://oisinf.quarto.pub/notes/
+Notes on mostly data science topics, hosted at https://oisinf.quarto.pub/notes/
 
-## Instructions
+## Using this repo
 
-To locally preview the website:
+This website is built using Quarto. To locally preview the website:
 
 ```
 quarto preview
