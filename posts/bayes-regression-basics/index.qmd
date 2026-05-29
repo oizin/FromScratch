@@ -1,5 +1,6 @@
 ---
 title: "Basics of Bayesian modelling"
+author: "Oisin Fitzgerald"
 subtitle: "With R code examples"
 date: "June 2025"
 format:

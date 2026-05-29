@@ -1,6 +1,7 @@
 ---
 title: 'Binary outcome misclassification'
 subtitle: 'Nondifferential misclassification'
+author: "Oisin Fitzgerald"
 date: "January 2025"
 bibliography: references.bib
 format:

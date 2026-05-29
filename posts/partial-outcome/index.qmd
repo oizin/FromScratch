@@ -1,6 +1,7 @@
 ---
 title: 'Missing data and directed acyclic graphs'
 subtitle: 'Notes on Mohan & Pearl (2021)'
+author: "Oisin Fitzgerald"
 date: "February 2025"
 bibliography: references.bib
 format:

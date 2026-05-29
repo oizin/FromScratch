@@ -1,0 +1,169 @@
+---
+title: "The c-index and AUC-ROC for competing risks outcomes"
+subtitle: "Coding the metrics in R"
+author: Oisin Fitzgerald
+date: "29 May 2026"
+bibliography: references.bib
+nocite: |
+  @*
+format:
+    html:
+        code-fold: show
+execute:
+  freeze: auto
+  cache: true
+---
+
+# Background
+
+In a [previous post](/posts/discrimination-competing-risks/index.qmd) I looked at how to generalise the concordance index (**c-index**) and area under the receiver operating characteristic curve (**AUC-ROC**), to competing risks data. In both cases there were multiple versions of the metrics, depending on how the temporal aspect of the data was handled and who was considered a *control*, the comparison subjects we expect to have lower markers scores than the *cases*, those who experience the event of interest. In this post I'll code up basic functions that calculate particular versions of these metrics.
+
+# Code the metrics
+
+## c-index
+
+Broadly, both the c-index and AUC-ROC are the probability that a randomly chosen subject with a positive outcome (case) will have a higher predicted risk score than a randomly chosen subject with a negative outcome (control). What differs are what we consider a negative outcome (control) and how we account for temporality. The below implementation is based on the equations in @wolbers2014concordance. You might notice the inverse probability of censoring weights (IPCWs) (which I haven't explained in any detail) are calculated based on different times depending on their location in the estimator (also remember each comparison is two separate subjects, hence the products). Generally, each probability contributing to the weights is based on the smaller of the two times in any comparison. This ensures subjects are weighted to .
+
+```{r}
+#' Concordance index (c-index) for competing risks data
+#' 
+#' @param time If T is the event and C the censoring C then time = min(T,C)
+#' @param status Event indicator, takes values from 0=censored, 1=event of interest, 2+=competing events
+#' @param marker Marker score, e.g. probability of event 1 in a specific timeframe
+#' @param tau Upper limit on time
+#' @param G_fun function that ...
+#' @param score_equal what score to give when the cases and control have the same marker value. Although 
+#' formulas present in the literature imply this would be 0 (i.e. strict inequality) the software custom is to
+#' add 0.5 to the numerator for each case-control equality.
+#' 
+c_index <- function(time, status, marker, tau, G_fun,score_equal=0.5) {
+    
+  # case
+  case_idx <- which(time <= tau & status == 1)
+  
+  num <- 0
+  den <- 0
+  
+  for (i in case_idx) {
+    # controls
+    ## A_ij = 1{T_i < T_j}
+    A <- time[i] < time
+    ## B_ij = 1{D_j = 2, T_i >= T_j}
+    B <- (status == 2) & (time[i] >= time)
+    
+    A[i] <- FALSE
+    B[i] <- FALSE
+
+    # weights
+    ## w_{ij,1} = 1 / G(T_i | X_i)^2, same for all j, depends only on i
+    w1 <- 1 / G_fun(time[i])^2
+    ## w_{ij,2} = 1 / [G(T_i | X_i) * G(T_j | X_j)], depends on j too
+    w2 <- 1 / (G_fun(time[i]) * G_fun(time))
+    
+    # win indicator
+    ## Q_ij = 1{m(X_i) > m(X_j)}
+    Q <- 1 * (marker[i] > marker) + score_equal * (marker[i] == marker)
+    
+    # sum over j
+    num <- num + sum(A * w1 * Q) + sum(B * w2 * Q)
+    den <- den + sum(A * w1) + sum(B * w2)
+  }
+  
+  num / den
+}
+
+```
+
+## AUC-ROC
+
+For the AUC-ROC we remove consideration of which subject had the event first which also alters the weights, but it is otherwise the same as the c-index. This is the cumulative/dynamic version of the time-to-event AUC-ROC.
+
+```{r}
+#' Area under the receiver operating characteristic curve (AUC-ROC) for competing risks data
+#' 
+#' @param time If T is the event and C the censoring C then time = min(T,C)
+#' @param status Event indicator, takes values from 0=censored, 1=event of interest, 2+=competing events
+#' @param marker Marker score, e.g. probability of event 1 in a specific timeframe
+#' @param tau The landmark time
+#' @param G_fun function that ...
+#' @param score_equal what score to give when the cases and control have the same marker value. Although 
+#' formulas present in the literature imply this would be 0 (i.e. strict inequality) the software custom is to
+#' add 0.5 to the numerator for each case-control equality.
+#'
+auc_roc <- function(time, status, marker, tau, G_fun,score_equal=0.5) {
+    
+  # case
+  case_idx <- which(time <= tau & status == 1)
+  
+  num <- 0
+  den <- 0
+  
+  for (i in case_idx) {
+    # controls
+    ## A_ij = 1{T_i < T_j}
+    A <- time > tau
+    ## B_ij = 1{D_j = 2, T_i >= T_j}
+    B <- (status == 2) & (time <= tau)
+    
+    A[i] <- FALSE
+    B[i] <- FALSE
+
+    # weights
+    ## w_{ij,1} = 1 / G(T_i | X_i)^2, same for all j, depends only on i
+    w1 <- 1 / (G_fun(time[i]) * G_fun(tau))
+    ## w_{ij,2} = 1 / [G(T_i | X_i) * G(T_j | X_j)], depends on j too
+    w2 <- 1 / (G_fun(time[i]) * G_fun(time))
+     
+    # win indicator
+    ## Q_ij = 1{m(X_i) > m(X_j)}
+    Q <- 1 * (marker[i] > marker) + score_equal * (marker[i] == marker)
+    
+    # sum over j
+    num <- num + sum(A * w1 * Q) + sum(B * w2 * Q)
+    den <- den + sum(A * w1) + sum(B * w2)
+  }
+  
+  num / den
+}
+```
+
+## Apply to simulated data
+
+For comparison, using the same data [previously](/posts/discrimination-competing-risks/index.qmd#apply-to-simulated-data) I got an AUC-ROC of 0.817 using `riskRegression::Score` and a c-index of 0.774 using `pec::cindex`. Looks like these relatively simple implementations work!
+
+```{r}
+#| label: simulate
+#| message: false
+#| warning: false
+
+library(survival)
+library(riskRegression)
+library(prodlim)
+
+# Simulate competing risks data
+set.seed(123)
+df <- prodlim::SimCompRisk(500)
+
+# Fit two cause-specific Cox models combined via CSC() and predict t=5 risk
+fit <- riskRegression::CSC(Hist(time, event) ~ X1 + X2, data = df)
+risk_t5 <- as.numeric(predictRisk(fit, newdata = df, times = 5, cause = 1))
+
+# Use Kaplan-Meier weights to account for censoring
+km_cens <- survfit(Surv(time, event == 0) ~ 1, data = df)
+G_fun  <- stepfun(sort(km_cens$time), c(1, km_cens$surv), right = TRUE)
+
+# C-index and AUC-ROC
+c_res <- c_index(df$time,df$event,risk_t5,5,G_fun)
+roc_res <- auc_roc(df$time,df$event,risk_t5,5,G_fun)
+sprintf("C-index(5): %.3f", c_res)
+sprintf("AUC-ROC(C/D)(5): %.3f", roc_res)
+```
+
+# The end
+
+This has been a quick tour of calculating specific version of the c-index and AUC-ROC for competing risks data. Some extensions could be to allow `G_fun` to take in covariates and generalise `auc_roc` to the other forms incident/dynamic etc. of the AUC-ROC.
+
+# References
+
+::: {#refs}
+:::
