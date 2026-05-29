@@ -8,4 +8,7 @@ about:
       href: https://github.com
 ---
 
-About this blog
+Hello 👋
+
+I'm Oisin Fitzgerald. Welcome to my personal site.
+
