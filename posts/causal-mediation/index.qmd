@@ -8,6 +8,12 @@ bibliography: references.bib
 
 ::: {.callout-note}
 I recently worked on the meta-analysis of a set of randomised control trials (RCT), and as part of this carried out a series of causal mediation analyses. I'd never thought about mediation in an RCT setting before. It was interesting to realise that even in a perfectly designed experiment with full randomisation of the treatment there is a need to think carefully about risk of confounding.
+
+Update (June 2026):
+
+This is study I was working on at the time:
+
+[Peters, R., Xu, Y., Fitzgerald, O., Aung, H. L., Beckett, N., Bulpitt, C., ... & Dementia rIsk REduCTion (DIRECT) collaboration. (2022). Blood pressure lowering and prevention of dementia: an individual patient data meta-analysis. European heart journal, 43(48), 4980-4990.](https://academic.oup.com/eurheartj/article/43/48/4980/6770632?guestAccessKey=)
 :::
 
 ## Introduction
