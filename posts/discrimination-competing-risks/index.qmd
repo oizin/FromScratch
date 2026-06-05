@@ -2,7 +2,7 @@
 title: "Evaluating discriminatory ability of prediction models for competing risks outcomes"
 subtitle: "Background and theory"
 author: Oisin Fitzgerald
-date: "28May 2026"
+date: "28 May 2026"
 bibliography: references.bib
 nocite: |
   @*
