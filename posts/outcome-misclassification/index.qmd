@@ -12,6 +12,14 @@ execute:
   cache: true
 ---
 
+::: {.callout-note}
+*Update (June 2026):*
+
+This is study I was working on at the time:
+
+[Paul, R. C., Venetis, C. A., Fitzgerald, O., & Chambers, G. M. (2025). Incidence and risk factors of monozygotic twinning following ART: analysis of 154 671 live births resulting from single embryo transfer. Human Reproduction, 40(9), 1744-1752.](https://academic.oup.com/humrep/article/40/9/1744/8178822)
+:::
+
 ```{r}
 #| echo: false
 #| warning: false

@@ -1,0 +1,18 @@
+```{=html}
+<div class="channels">
+<% items.forEach((item, i) => { %>
+<a class="tv" href="<%- item.path %>" <%= metadataAttrs(item) %>>
+<div class="screen">
+<% if (item.image) { %>
+<img src="<%- item.image %>" alt="">
+<% } %>
+<span class="ch">CH <%= String(items.length - i).padStart(2, "0") %></span>
+</div>
+<div class="tv-body">
+<h3><%= item.title %></h3>
+<p><%= item.description %></p>
+</div>
+</a>
+<% }) %>
+</div>
+```

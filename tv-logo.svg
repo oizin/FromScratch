@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 56" width="64" height="56">
+  <!-- antennae -->
+  <line x1="31" y1="12" x2="20" y2="1" stroke="#c9c9c9" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="33" y1="12" x2="46" y2="2" stroke="#c9c9c9" stroke-width="1.6" stroke-linecap="round"/>
+  <ellipse cx="32" cy="12.5" rx="4" ry="2.2" fill="#555"/>
+  <!-- gunmetal case -->
+  <rect x="3" y="13" width="58" height="38" rx="4" fill="#4a5058" stroke="#6b727b" stroke-width="1"/>
+  <rect x="5" y="15" width="54" height="34" rx="2.5" fill="#202328"/>
+  <!-- screen bezel + colour bars -->
+  <rect x="7" y="17" width="38" height="30" rx="5" fill="#d8d4c8"/>
+  <clipPath id="scr"><rect x="9.5" y="19.5" width="33" height="25" rx="4"/></clipPath>
+  <g clip-path="url(#scr)">
+    <rect x="9.5"  y="19.5" width="4.8" height="25" fill="#f2f2f2"/>
+    <rect x="14.2" y="19.5" width="4.8" height="25" fill="#f5d000"/>
+    <rect x="18.9" y="19.5" width="4.8" height="25" fill="#22c8d8"/>
+    <rect x="23.6" y="19.5" width="4.8" height="25" fill="#2fb84a"/>
+    <rect x="28.3" y="19.5" width="4.8" height="25" fill="#e83fb0"/>
+    <rect x="33.0" y="19.5" width="4.8" height="25" fill="#e5322d"/>
+    <rect x="37.7" y="19.5" width="4.8" height="25" fill="#2747d6"/>
+    <rect x="9.5" y="19.5" width="33" height="7" fill="#fff" opacity=".12"/>
+  </g>
+  <!-- control panel: knobs + speaker -->
+  <circle cx="52" cy="22" r="3.2" fill="#9a9a9a" stroke="#111" stroke-width=".8"/>
+  <line x1="52" y1="22" x2="52" y2="19.3" stroke="#111" stroke-width="1"/>
+  <circle cx="52" cy="31" r="3.2" fill="#9a9a9a" stroke="#111" stroke-width=".8"/>
+  <line x1="52" y1="31" x2="54.3" y2="29.5" stroke="#111" stroke-width="1"/>
+  <g fill="#111">
+    <rect x="48.5" y="37" width="7" height="1"/>
+    <rect x="48.5" y="39.3" width="7" height="1"/>
+    <rect x="48.5" y="41.6" width="7" height="1"/>
+    <rect x="48.5" y="43.9" width="7" height="1"/>
+  </g>
+  <!-- feet -->
+  <rect x="8" y="51" width="5" height="2.5" rx="1" fill="#1b1b1b"/>
+  <rect x="51" y="51" width="5" height="2.5" rx="1" fill="#1b1b1b"/>
+</svg>

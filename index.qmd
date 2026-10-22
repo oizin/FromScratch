@@ -1,12 +1,18 @@
 ---
-title: "Posts"
+#title: "Channels"
 listing:
   contents: posts
   sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
+  template: channels.ejs
+  fields: [title, date, image, description]
 page-layout: full
-title-block-banner: true
+body-classes: static-bg
+include-in-header:
+  text: |
+    <script>
+      try {
+        if (sessionStorage.getItem('tuned-in')) document.documentElement.classList.add('tuned');
+        else sessionStorage.setItem('tuned-in', '1');
+      } catch (e) {}
+    </script>
 ---
