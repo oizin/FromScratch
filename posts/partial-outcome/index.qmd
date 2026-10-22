@@ -3,6 +3,8 @@ title: 'Missing data and directed acyclic graphs'
 subtitle: 'Notes on Mohan & Pearl (2021)'
 author: "Oisin Fitzgerald"
 date: "February 2025"
+image: 03_dag_retro_glitch.jpg
+description: How to use graphical models to think about missing data. 
 bibliography: references.bib
 format:
     html:

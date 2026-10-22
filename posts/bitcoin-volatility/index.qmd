@@ -1,7 +1,9 @@
 ---
-title: "Bitcoin price volatility with ARCH models"
+title: "Modelling bitcoin price volatility with ARCH models"
 author: "Oisin Fitzgerald"
 date: "January 2021"
+image: 02_arms_out_retro.jpg
+description: ARCH = Autoregressive conditional heteroskedasticity, i.e. conditional variance.
 bibliography: references.bib
 format:
     html:

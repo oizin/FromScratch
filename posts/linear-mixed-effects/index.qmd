@@ -1,7 +1,9 @@
 ---
-title: "An introduction to the uses and estimation of linear mixed effect models."
+title: "An introduction to linear mixed effect models."
 author: Oisín Fitzgerald
 date: "8 December 2021"
+image: 05_oil_rig_retro.jpg
+description: Covers the uses and estimation of linear mixed effect models.
 engine: julia
 julia:
   exeflags: ["--project=@."]

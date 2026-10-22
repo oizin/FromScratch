@@ -3,6 +3,8 @@ title: "Causal Mediation: A Brief Overview"
 subtitle: "With some R coded simulations"
 author: Oisin Fitzgerald
 date: "01 March 2021"
+image: 08_group_handshake_retro.jpg
+description: Mediation attempts to describe the mechanism by which an action has an effect.
 bibliography: references.bib
 ---
 

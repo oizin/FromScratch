@@ -3,6 +3,8 @@ title: "An introduction to forward mode automatic differentiation"
 subtitle: "With example Julia code"
 author: Oisin Fitzgerald
 date: "01 April 2021"
+image: 01_error_vs_step_size_retro_glitch.jpg
+description: Automatic differentiation involves computation of derivatives using a computational graph. 
 bibliography: references.bib
 engine: julia
 ---

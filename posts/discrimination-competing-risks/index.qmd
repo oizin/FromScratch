@@ -1,8 +1,10 @@
 ---
-title: "Evaluating discriminatory ability of prediction models for competing risks outcomes"
+title: "Evaluating discrimination of prediction models in competing risks setting"
 subtitle: "Background and theory"
 author: Oisin Fitzgerald
 date: "28 May 2026"
+image: 04_cumulative_incidence_retro_glitch.jpg
+description: Theory covering the c-index and AUC-ROC with multiple time-to-event outcomes.
 bibliography: references.bib
 nocite: |
   @*

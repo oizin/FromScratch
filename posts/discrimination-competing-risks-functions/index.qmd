@@ -3,6 +3,8 @@ title: "The c-index and AUC-ROC for competing risks outcomes"
 subtitle: "Coding the metrics in R"
 author: Oisin Fitzgerald
 date: "29 May 2026"
+image: 10_computer_parts_retro_heavy.jpg
+description: R functions to calculate the c-index and AUC-ROC with multiple time-to-event outcomes.
 bibliography: references.bib
 nocite: |
   @*

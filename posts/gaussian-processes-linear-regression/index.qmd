@@ -2,6 +2,8 @@
 title: "Gaussian processes and linear regression"
 author: Oisín Fitzgerald
 date: "May 2021"
+image: 01_cover_golden_hour.jpg
+description: Bayesian linear regression from a Gaussian process point of view
 engine: julia
 julia:
   exeflags: ["--project=@."]

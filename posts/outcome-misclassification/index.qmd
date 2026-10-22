@@ -3,6 +3,8 @@ title: 'Binary outcome misclassification'
 subtitle: 'Nondifferential misclassification'
 author: "Oisin Fitzgerald"
 date: "January 2025"
+image: 09_cat_and_dog_retro_heavy.jpg
+description: Misclassification of binary outcome data can lead to biased estimates of model coefficients.
 bibliography: references.bib
 format:
     html:

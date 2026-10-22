@@ -2,6 +2,8 @@
 title: "Simulation-based inference"
 author: Oisín Fitzgerald
 date: "April 2021"
+image: 07_matrix_retro.jpg
+description: Reading an article providing an overview of simulation-based inference
 # bibliography: references.bib
 ---
 
